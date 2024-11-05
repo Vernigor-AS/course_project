@@ -9,7 +9,7 @@ class ProductBooksPage(BasePage):
         add_to_cart.click()
 
     def check_product_name_add_to_cart(self):
-        check_product = self.browser.find_element(*ProductPageLocators.PRODUCT_ADD_TO_CARD_CHECK)
+        check_product = self.browser.find_element(*ProductPageLocators.PRODUCT_ADD_TO_CART_CHECK)
         name_of_product = self.browser.find_element(*ProductPageLocators.NAME_OF_PRODUCT)
         assert check_product.text == name_of_product.text, (f'Product {check_product.text} has not been added to cart.'
                                                             f'Expected "{name_of_product.text}"')
