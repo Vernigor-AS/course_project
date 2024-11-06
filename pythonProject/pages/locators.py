@@ -1,15 +1,23 @@
 from selenium.webdriver.common.by import By
 
 
-class MainPageLocators():
+
+
+
+class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, '#login_link')
+
+class MainPageLocators():
+    LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
 
 class ProductPageLocators():
     ADD_PRODUCT_TO_CART = (By.CSS_SELECTOR, '.btn.btn-lg.btn-primary')
     NAME_OF_PRODUCT = (By.CSS_SELECTOR, '.col-sm-6 h1')
-    PRODUCT_ADD_TO_CART_CHECK = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div > strong')
+    NAME_OF_PRODUCT_ADDED = (By.CSS_SELECTOR, '#messages > div:nth-child(1) > div > strong')
     MESSAGE_PRICE_ADDED_PRODUCT_IN_CART = (By.CSS_SELECTOR, '.alertinner p strong')
     PRICE_OF_PRODUCT = (By.CSS_SELECTOR, '.col-sm-6 p.price_color')
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, 'div.alert.alert-success div.alertinner')
+
 
 class LoginPageLocators():
     #Зарегистрированный пользователь
