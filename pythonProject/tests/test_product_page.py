@@ -65,6 +65,6 @@ def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     guest = BasketPage(browser, link)
     guest.open()
     guest.guest_open_cart()
-    guest.expect_no_items_in_the_cart()
-    guest.expect_message_cart_is_empty()
+    guest.check_that_there_are_no_items_in_the_cart()
+    guest.check_the_message_about_the_empty_cart()
 
