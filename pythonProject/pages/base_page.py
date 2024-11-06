@@ -21,9 +21,13 @@ class BasePage():
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
+    def guest_open_cart(self):
+        guest = self.browser.find_element(*BasePageLocators.OPEN_CART)
+        guest.click()
+
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
-    #проверка, что элемент появляется на странице
+    #проверка, что элемент появляется на странице и не исчезает
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)

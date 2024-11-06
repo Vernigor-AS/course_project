@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, '#login_link')
+    OPEN_CART = (By.CSS_SELECTOR, 'span .btn.btn-default[href]')
 
 class MainPageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")
@@ -17,6 +18,10 @@ class ProductPageLocators():
     MESSAGE_PRICE_ADDED_PRODUCT_IN_CART = (By.CSS_SELECTOR, '.alertinner p strong')
     PRICE_OF_PRODUCT = (By.CSS_SELECTOR, '.col-sm-6 p.price_color')
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, 'div.alert.alert-success div.alertinner')
+
+class CartPageLocators():
+    MESSAGE_PRODUCT_IN_CART = (By.CSS_SELECTOR, 'h2.col-sm-6')
+    MESSAGE_YOUR_CART_IS_EMPTY = (By.CSS_SELECTOR, 'div #content_inner')
 
 
 class LoginPageLocators():
