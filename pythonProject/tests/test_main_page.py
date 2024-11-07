@@ -31,8 +31,10 @@ def test_should_be_login_page(browser):
 
 def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     link = 'http://selenium1py.pythonanywhere.com/'
-    guest = BasketPage(browser, link)
+    basket_page_link = 'http://selenium1py.pythonanywhere.com/ru/basket/'
+    guest = MainPage(browser, link)
     guest.open()
     guest.guest_open_cart()
-    guest.check_that_there_are_no_items_in_the_cart()
-    guest.check_the_message_about_the_empty_cart()
+    basket = BasketPage(browser, basket_page_link)
+    basket.check_that_there_are_no_items_in_the_cart()
+    basket.check_the_message_about_the_empty_cart()
