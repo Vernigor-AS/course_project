@@ -15,6 +15,7 @@ def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en',
                      help='Choose language: ru, en, fr, deu, es')
 
+
 @pytest.fixture(scope='function', autouse=True)
 def browser(request):
     user_language = request.config.getoption('language')
@@ -39,6 +40,7 @@ def browser(request):
     if browser is not None:
         print("\nQuit browser..")
         browser.quit()
+
 
 @pytest.fixture(scope="session", autouse=False)
 def load_config():

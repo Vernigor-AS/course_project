@@ -13,32 +13,32 @@ class BasePage():
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
-    #метод открытия страниц
+
     def open(self):
         self.browser.get(self.url)
-    #метод перехода на страницу логина/регистрации
+
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
-    #метод открытия корзины незарегистрированным пользователем
+
     def guest_open_cart(self):
         guest = self.browser.find_element(*BasePageLocators.OPEN_CART)
         guest.click()
-    #метод проверки, что присутствует линк на логин/регистрацию
+
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
-    #метод проверки, что пользователь зарегистрирован
+
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
                                                                      " probably unauthorised user"
-    #проверка, что элемент появляется на странице и не исчезает
+
     def is_element_present(self, how, what):
         try:
             self.browser.find_element(how, what)
         except NoSuchElementException:
             return False
         return True
-    #проверка, что элемент не появляется на странице в течении заданного времени
+
     def is_not_element_present(self, how, what, timeout=4):
         try:
             wait(self.browser, timeout).until(EC.presence_of_element_located((how, what)))
@@ -46,16 +46,16 @@ class BasePage():
             return True
 
         return False
-    #проверка, что элемент исчезает со страницы
+
     def is_disappeared(self, how, what, timeout=4):
         try:
-            wait(self.browser, timeout, 1).\
+            wait(self.browser, timeout, 1). \
                 until_not(EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
 
         return True
-    #задача с урока
+
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
