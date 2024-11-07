@@ -15,7 +15,7 @@ def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en',
                      help='Choose language: ru, en, fr, deu, es')
 
-@pytest.fixture(scope='function')
+@pytest.fixture(scope='function', autouse=True)
 def browser(request):
     user_language = request.config.getoption('language')
     browser_name = request.config.getoption("browser_name")
@@ -40,7 +40,7 @@ def browser(request):
         print("\nQuit browser..")
         browser.quit()
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="session", autouse=False)
 def load_config():
     with open('config.json', 'r') as config_file:
         config = json.load(config_file)

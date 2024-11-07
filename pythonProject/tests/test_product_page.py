@@ -1,8 +1,37 @@
+import time
+
 import pytest
 from pages.base_page import BasePage
 from pages.basket_page import BasketPage
+from pages.login_page import LoginPage
 from pages.product_page import ProductPage
 
+
+
+@pytest.mark.registration_new_user
+class TestUserAddToBasketFromProductPage():
+    #фикстура регистрации нового пользователя
+    @pytest.fixture(scope="function", autouse=True)
+    def setup_new_user(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/ru/accounts/login/'
+        page_registration = LoginPage(browser, link)
+        page_registration.open()
+        page_registration.registration_new_user()
+        page_registration.should_be_authorized_user()
+
+    def test_user_cant_see_success_message(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/'
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.should_not_be_success_message()
+
+    def test_user_can_add_product_to_basket(self, browser):
+        link = 'http://selenium1py.pythonanywhere.com/ru/catalogue/the-girl-who-played-with-non-fire_203/'
+        product_page = ProductPage(browser, link)
+        product_page.open()
+        product_page.should_be_add_product_to_cart()
+        product_page.check_product_name_add_to_cart()
+        product_page.check_price_product()
 
 
 @pytest.mark.parametrize('link', ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
